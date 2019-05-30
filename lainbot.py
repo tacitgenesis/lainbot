@@ -5,7 +5,7 @@ from discord import Game
 from discord.ext.commands import Bot
 
 # Grab the $TOKEN variable from your environment
-TOKEN = os.environ['TOKEN']
+TOKEN = enviorn.os[TOKEN]
 
 client = discord.Client()
 
@@ -16,7 +16,7 @@ async def on_message(message):
     
     await client.change_presence(game=discord.Game(name='lain help'))
     
-    if message.content.startswith('lain roll dice'):
+    if message.content.startswith('lain roll dice' or 'Lain roll dice'):
         msg = random.randint(1,6)
         await client.send_message(message.channel, msg)
 
@@ -168,6 +168,14 @@ async def on_message(message):
 
     if message.content.startswith('lain smug'):
         msg = random.choice(open("reacts/smug").readlines())
+        await client.send_message(message.channel, msg)
+
+    if message.content.startswith('lain kiss'):
+        msg = (message.content + ", owo..:" + random.choice(open("reacts/kiss").readlines())) 
+        await client.send_message(message.channel, msg)
+
+    if message.content.startswith('lain kill'):
+        msg = (message.content + ", RIP:" + random.choice(open("reacts/kill").readlines())) 
         await client.send_message(message.channel, msg)
 
 
